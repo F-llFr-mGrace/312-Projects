@@ -685,5 +685,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 1178999568680615303}
-  speedMove: 50000
+  speedMove: 100000
   speedTurn: 250000

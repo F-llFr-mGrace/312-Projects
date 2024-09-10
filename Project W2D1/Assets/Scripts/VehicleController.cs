@@ -24,5 +24,8 @@ public class VehicleController : MonoBehaviour
         car.AddForce(this.transform.right * move * Time.deltaTime);
         car.AddTorque(this.transform.up * turn * Time.deltaTime);
         //car.AddForce();
+        var lockedAxis = this.transform.rotation;
+        lockedAxis.x = 0; lockedAxis.z = 0;
+        this.transform.SetPositionAndRotation(this.transform.position, lockedAxis);
     }
 }
