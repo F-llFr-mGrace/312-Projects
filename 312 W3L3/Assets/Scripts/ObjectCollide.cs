@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class ObjectCollide : MonoBehaviour
 {
     [SerializeField] Material matHit;
+    [SerializeField] scorekeeping scoreKeeping;
+
+    private HashSet<GameObject> collidedObjects = new HashSet<GameObject>();
 
     void OnCollisionEnter(Collision collision)
     {
@@ -13,7 +17,13 @@ public class ObjectCollide : MonoBehaviour
         {
             if (!collision.gameObject.CompareTag("Wall"))
             {
-                collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
+                if (!collidedObjects.Contains(collision.gameObject))
+                {
+                    collidedObjects.Add(collision.gameObject);
+                    collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
+                    var scoreToAdd = 1f;
+                    scoreKeeping.addToScore(scoreToAdd);
+                }
             }
         }
     }

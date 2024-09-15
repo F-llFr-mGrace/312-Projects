@@ -32,12 +32,9 @@ public class ControllerPlayer : MonoBehaviour
     {
         moveForBack = Input.GetAxis("Vertical");
         moveLeftRight = Input.GetAxis("Horizontal");
-        //Debug.Log(moveForBack + ", " + moveLeftRight);
 
         var moveDir = new Vector3(moveLeftRight, 0, moveForBack);
         moveDir.Normalize();
-
-        Debug.Log(Time.deltaTime);
 
         thisRigidbody.AddForce(moveDir * speed * speedDTimeOffset * Time.deltaTime);
     }
