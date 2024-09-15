@@ -20,11 +20,21 @@ public class ControllerPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovementPlayer();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("There is no jump in this game!");
+        }
+    }
+
+    private void MovementPlayer()
+    {
         moveForBack = Input.GetAxis("Vertical");
         moveLeftRight = Input.GetAxis("Horizontal");
         //Debug.Log(moveForBack + ", " + moveLeftRight);
 
-        var moveDir = new Vector3(moveLeftRight , 0 , moveForBack);
+        var moveDir = new Vector3(moveLeftRight, 0, moveForBack);
         moveDir.Normalize();
 
         Debug.Log(Time.deltaTime);
