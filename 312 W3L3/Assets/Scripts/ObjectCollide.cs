@@ -15,9 +15,12 @@ public class ObjectCollide : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            collidedObjects.Add(collision.gameObject);
-            collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
-            scoreKeeping.addToScore();
+            if (!collidedObjects.Contains(collision.gameObject))
+            {
+                collidedObjects.Add(collision.gameObject);
+                collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
+                scoreKeeping.addToScore();
+            }
         }
     }
 }
