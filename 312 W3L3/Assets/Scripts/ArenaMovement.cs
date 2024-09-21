@@ -15,6 +15,6 @@ public class ArenaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 100, 0);
+        transform.Rotate(0, .2f, 0);
     }
 }
