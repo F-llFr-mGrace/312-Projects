@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     [SerializeField] Rigidbody thisRigidbody;
+    [SerializeField] MeshRenderer thisMeshRenderer;
     [SerializeField] float waitTime;
 
     bool timerActivated = false;
@@ -22,6 +23,7 @@ public class FallingObject : MonoBehaviour
         {
             timerActivated = true;
             thisRigidbody.useGravity = true;
+            thisMeshRenderer.enabled = true;
         }
     }
 }

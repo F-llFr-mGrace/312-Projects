@@ -6,41 +6,54 @@ using UnityEngine;
 public class scorekeeping : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textScore;
+    [SerializeField] TextMeshProUGUI textScoreMultCountdown;
 
     float score = 0;
-    float scoreMult = 1;
-    float lastScored;
-    float lastScoredOld;
+    float scoreToAdd = 0;
+    float objectsHitInCombo = 0;
+    [SerializeField] float timeCombo;
+    float lastScored = -1;
+
+    bool currentCombo = false;
 
     void Start()
     {
-        lastScored = Time.time;
-        lastScoredOld = Time.time;
+        lastScored = -1 - timeCombo;
         textScore.text = "Score: " + score;
     }
 
-    public void addToScore(float scoreToAdd)
+    void Update()
     {
-        if (lastScored < float.Epsilon)
+        if ((lastScored + timeCombo) - Time.time > 0f)
         {
-            lastScored = Time.time;
-            lastScoredOld = Time.time;
+            textScoreMultCountdown.text = ((lastScored + timeCombo) - Time.time).ToString();
+            currentCombo = true;
         }
         else
         {
-            lastScored = Time.time;
-            if (lastScored - lastScoredOld <= 5f)
+            if (currentCombo)
             {
-                scoreMult += 0.1f;
+                score += scoreToAdd;
+                objectsHitInCombo = 0;
+                scoreToAdd = 0;
             }
-            else
-            {
-                scoreMult = 1;
-            }
-            lastScoredOld = lastScored;
+            textScoreMultCountdown.text = (0).ToString();
+            currentCombo = false;
         }
-        score += scoreToAdd;
-        textScore.text = ("Score: " + score + " X " + scoreMult + " = " + score * scoreMult).ToString();
-        score *= scoreMult;
+        if (currentCombo)
+        {
+            textScore.text = ("Score: " + score + " + " + scoreToAdd + " = " + (score + scoreToAdd)).ToString();
+        }
+        else
+        {
+            textScore.text = ("Score: " + score);
+        }
+    }
+
+    public void addToScore()
+    {
+        lastScored = Time.time;
+        objectsHitInCombo += 1;
+        scoreToAdd += objectsHitInCombo;
     }
 }

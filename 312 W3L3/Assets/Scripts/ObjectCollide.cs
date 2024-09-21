@@ -21,8 +21,7 @@ public class ObjectCollide : MonoBehaviour
                 {
                     collidedObjects.Add(collision.gameObject);
                     collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
-                    var scoreToAdd = 1f;
-                    scoreKeeping.addToScore(scoreToAdd);
+                    scoreKeeping.addToScore();
                 }
             }
         }
