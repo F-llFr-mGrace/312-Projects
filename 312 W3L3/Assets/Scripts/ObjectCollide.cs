@@ -13,17 +13,11 @@ public class ObjectCollide : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            if (!collision.gameObject.CompareTag("Wall"))
-            {
-                if (!collidedObjects.Contains(collision.gameObject))
-                {
-                    collidedObjects.Add(collision.gameObject);
-                    collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
-                    scoreKeeping.addToScore();
-                }
-            }
+            collidedObjects.Add(collision.gameObject);
+            collision.gameObject.GetComponent<MeshRenderer>().material = matHit;
+            scoreKeeping.addToScore();
         }
     }
 }
