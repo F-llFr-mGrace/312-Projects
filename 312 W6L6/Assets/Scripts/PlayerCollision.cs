@@ -16,7 +16,14 @@ public class PlayerCollision : MonoBehaviour
                 Debug.Log("You're at respawn pad");
                 break;
             case ("Finish"):
-                Debug.Log("You're at a finish pad");
+                if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
                 break;
             default:
                 Debug.Log("Rocket crash!");
