@@ -1007,6 +1007,7 @@ MonoBehaviour:
   thisRigidbody: {fileID: 383458880}
   speedThrust: 12.5
   speedRot: 12
+  soundThrust: {fileID: 383458882}
 --- !u!82 &383458882
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1018,8 +1019,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 24849e7b008aaca4da9f6e643d14cb34, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0

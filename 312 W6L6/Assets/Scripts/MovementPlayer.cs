@@ -14,6 +14,8 @@ public class MovementPlayer : MonoBehaviour
     float momentum;
     bool isStopped = false;
 
+    [SerializeField] AudioSource soundThrust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,19 @@ public class MovementPlayer : MonoBehaviour
         thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
 
         thrust = transform.up * Input.GetAxis("Vertical");
-        if (Input.GetAxis("Vertical") < 0)
+        if (Input.GetAxis("Vertical") <= 0)
         {
             thrust *= 0;
+            soundThrust.Stop();
         }
+        else
+        {
+            if (!soundThrust.isPlaying)
+            {
+                soundThrust.Play();
+            }
+        }
+        
 
         if (!Input.GetKey(KeyCode.Space))
         {
