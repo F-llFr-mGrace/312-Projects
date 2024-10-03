@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             default:
                 Debug.Log("Rocket crash!");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 break;
         }
     }
