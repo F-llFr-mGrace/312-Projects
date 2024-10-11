@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] AudioSource soundThrust;
 
+    public bool isCrashed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,43 +27,47 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotateForce = Input.GetAxis("Horizontal");
-        thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
+        if (!isCrashed)
+        {
+            rotateForce = Input.GetAxis("Horizontal");
+            thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
 
-        thrust = transform.up * Input.GetAxis("Vertical");
-        if (Input.GetAxis("Vertical") <= 0)
-        {
-            thrust *= 0;
-            soundThrust.Stop();
-        }
-        else
-        {
-            if (!soundThrust.isPlaying)
+            thrust = transform.up * Input.GetAxis("Vertical");
+            if (Input.GetAxis("Vertical") <= 0)
             {
-                soundThrust.Play();
+                thrust *= 0;
+                soundThrust.Stop();
             }
-        }
-        
+            else
+            {
+                if (!soundThrust.isPlaying)
+                {
+                    soundThrust.Play();
+                }
+            }
 
-        if (!Input.GetKey(KeyCode.Space))
-        {
-            if (isStopped)
+
+            if (!Input.GetKey(KeyCode.Space))
             {
-                thisRigidbody.useGravity = true;
-                thisRigidbody.velocity = transform.up * momentum;
+                if (isStopped)
+                {
+                    thisRigidbody.useGravity = true;
+                    thisRigidbody.velocity = transform.up * momentum;
+                }
+                thisRigidbody.AddForce(thrust * speedThrust * 100 * Time.deltaTime);
+                isStopped = false;
             }
-            thisRigidbody.AddForce(thrust * speedThrust * 100 * Time.deltaTime);
-            isStopped = false;
-        }
-        else
-        {
-            if (!isStopped)
+            else
             {
-                thisRigidbody.useGravity = false;
-                momentum = thisRigidbody.velocity.magnitude;
-                isStopped = true;
+                if (!isStopped)
+                {
+                    thisRigidbody.useGravity = false;
+                    momentum = thisRigidbody.velocity.magnitude;
+                    isStopped = true;
+                }
+                thisRigidbody.velocity = Vector3.zero;
             }
-            thisRigidbody.velocity = Vector3.zero;
+
         }
     }
 }

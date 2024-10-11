@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField] ParticleSystem particleSuccess;
+    [SerializeField] ParticleSystem particleCrash;
 
+    [SerializeField] PlayerMovement scriptPlayerMovement;
+
+    bool isCrashed = false;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,19 +21,35 @@ public class PlayerCollision : MonoBehaviour
                 Debug.Log("You're at respawn pad");
                 break;
             case ("Finish"):
-                if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
-                {
-                    SceneManager.LoadScene(0);
-                }
-                else
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
+                Invoke("LoadNextLevel", 2f);
+                particleSuccess.Play();
                 break;
             default:
-                Debug.Log("Rocket crash!");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                if (!isCrashed)
+                {
+                    isCrashed = true;
+                    scriptPlayerMovement.isCrashed = true;
+                    Invoke("ReLoadLevel", 1f);
+                    particleCrash.Play();
+                }
                 break;
+        }
+    }
+
+    private void ReLoadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void LoadNextLevel()
+    {
+        if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
