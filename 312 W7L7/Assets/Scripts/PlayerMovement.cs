@@ -33,60 +33,72 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isCrashed)
         {
-            rotateForce = Input.GetAxis("Horizontal");
-            thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
-            if (rotateForce == 0)
-            {
-                particleRightTurn.Stop();
-                particleLeftTurn.Stop();
-            }
-            else if (rotateForce < 0)
-            {
-                particleLeftTurn.Play();
-            }
-            else
-            {
-                particleRightTurn.Play();
-            }
+            Rotation();
+            Thrust();
+        }
+    }
 
-            thrust = transform.up * Input.GetAxis("Vertical");
-            if (Input.GetAxis("Vertical") <= 0)
-            {
-                thrust *= 0;
-                particleThrust.Stop();
-                soundThrust.Stop();
-            }
-            else
-            {
-                if (!soundThrust.isPlaying)
-                {
-                    particleThrust.Play();
-                    soundThrust.Play();
-                }
-            }
+    private void Thrust()
+    {
+        ThrustInputDetection();
 
-
-            if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            if (isStopped)
             {
-                if (isStopped)
-                {
-                    thisRigidbody.useGravity = true;
-                    thisRigidbody.velocity = transform.up * momentum;
-                }
-                thisRigidbody.AddForce(thrust * speedThrust * 100 * Time.deltaTime);
-                isStopped = false;
+                thisRigidbody.useGravity = true;
+                thisRigidbody.velocity = transform.up * momentum;
             }
-            else
+            thisRigidbody.AddForce(thrust * speedThrust * 100 * Time.deltaTime);
+            isStopped = false;
+        }
+        else
+        {
+            if (!isStopped)
             {
-                if (!isStopped)
-                {
-                    thisRigidbody.useGravity = false;
-                    momentum = thisRigidbody.velocity.magnitude;
-                    isStopped = true;
-                }
-                thisRigidbody.velocity = Vector3.zero;
+                thisRigidbody.useGravity = false;
+                momentum = thisRigidbody.velocity.magnitude;
+                isStopped = true;
             }
+            thisRigidbody.velocity = Vector3.zero;
+        }
+    }
 
+    private void ThrustInputDetection()
+    {
+        thrust = transform.up * Input.GetAxis("Vertical");
+        if (Input.GetAxis("Vertical") <= 0)
+        {
+            thrust *= 0;
+            particleThrust.Stop();
+            soundThrust.Stop();
+        }
+        else
+        {
+            if (!soundThrust.isPlaying)
+            {
+                particleThrust.Play();
+                soundThrust.Play();
+            }
+        }
+    }
+
+    private void Rotation()
+    {
+        rotateForce = Input.GetAxis("Horizontal");
+        thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
+        if (rotateForce == 0)
+        {
+            particleRightTurn.Stop();
+            particleLeftTurn.Stop();
+        }
+        else if (rotateForce < 0)
+        {
+            particleLeftTurn.Play();
+        }
+        else
+        {
+            particleRightTurn.Play();
         }
     }
 }
