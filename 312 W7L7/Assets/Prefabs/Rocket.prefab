@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549f1a46692b8014b93f91e7229cf261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisCollider: {fileID: 1925168595776939898}
   particleSuccess: {fileID: 3647071152107665698}
   particleCrash: {fileID: 2390191716835206278}
   scriptPlayerMovement: {fileID: 6373863091790921909}

@@ -6,12 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField] BoxCollider thisCollider;
+
     [SerializeField] ParticleSystem particleSuccess;
     [SerializeField] ParticleSystem particleCrash;
 
     [SerializeField] PlayerMovement scriptPlayerMovement;
 
     bool isCrashed = false;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            thisCollider.enabled = false;
+        }
+        else
+        {
+            thisCollider.enabled = true;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
