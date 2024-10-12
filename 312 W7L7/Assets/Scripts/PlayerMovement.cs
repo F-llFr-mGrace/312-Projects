@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isCrashed = false;
 
+    [SerializeField] ParticleSystem particleThrust;
+    [SerializeField] ParticleSystem particleRightTurn;
+    [SerializeField] ParticleSystem particleLeftTurn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,17 +35,32 @@ public class PlayerMovement : MonoBehaviour
         {
             rotateForce = Input.GetAxis("Horizontal");
             thisRigidbody.AddTorque(-Vector3.forward * rotateForce * speedRot * 100 * Time.deltaTime);
+            if (rotateForce == 0)
+            {
+                particleRightTurn.Stop();
+                particleLeftTurn.Stop();
+            }
+            else if (rotateForce < 0)
+            {
+                particleLeftTurn.Play();
+            }
+            else
+            {
+                particleRightTurn.Play();
+            }
 
             thrust = transform.up * Input.GetAxis("Vertical");
             if (Input.GetAxis("Vertical") <= 0)
             {
                 thrust *= 0;
+                particleThrust.Stop();
                 soundThrust.Stop();
             }
             else
             {
                 if (!soundThrust.isPlaying)
                 {
+                    particleThrust.Play();
                     soundThrust.Play();
                 }
             }

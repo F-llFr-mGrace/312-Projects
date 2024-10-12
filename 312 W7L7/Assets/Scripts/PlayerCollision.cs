@@ -25,12 +25,12 @@ public class PlayerCollision : MonoBehaviour
                 particleSuccess.Play();
                 break;
             default:
+                particleCrash.Play();
                 if (!isCrashed)
                 {
                     isCrashed = true;
                     scriptPlayerMovement.isCrashed = true;
                     Invoke("ReLoadLevel", 1f);
-                    particleCrash.Play();
                 }
                 break;
         }

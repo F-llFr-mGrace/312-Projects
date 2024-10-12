@@ -2119,7 +2119,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5664087813633838804, guid: 54aef3a912297db4fb34c843116d60de, type: 3}
       propertyPath: m_Name
-      value: Rocket
+      value: Root Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 7205015778495471460, guid: 54aef3a912297db4fb34c843116d60de, type: 3}
       propertyPath: m_LocalPosition.x
