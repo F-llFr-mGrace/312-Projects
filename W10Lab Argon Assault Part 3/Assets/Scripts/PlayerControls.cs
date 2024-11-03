@@ -30,6 +30,13 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoveShip();
+
+        transform.localRotation = Quaternion.Euler(-30f, 30f, 0f);
+    }
+
+    private void MoveShip()
+    {
         float horizontalThrow = movement.ReadValue<Vector2>().x * speed * 10 * Time.deltaTime;
         float verticalThrow = movement.ReadValue<Vector2>().y * speed * 10 * Time.deltaTime;
 
