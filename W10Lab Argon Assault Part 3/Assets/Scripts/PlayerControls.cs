@@ -8,6 +8,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] InputAction movement;
     [SerializeField] float speed;
 
+    [SerializeField] float clampX;
+    [SerializeField] float clampY;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +42,8 @@ public class PlayerControls : MonoBehaviour
 
         transform.localPosition = new Vector3
             (
-            transform.localPosition.x + horizontalThrow,
-            transform.localPosition.y + verticalThrow,
+            Mathf.Clamp((transform.localPosition.x + horizontalThrow), -clampX, clampX),
+            Mathf.Clamp((transform.localPosition.y + verticalThrow), -clampY, clampY),
             transform.localPosition.z
             );
     }
