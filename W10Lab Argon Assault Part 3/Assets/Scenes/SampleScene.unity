@@ -506,6 +506,10 @@ MonoBehaviour:
   speed: 1
   clampX: 6
   clampY: 4
+  posPitchFactor: 5
+  ctrlPitchFactor: 5
+  posYawFactor: 5
+  ctrlRollFactor: 10
 --- !u!1 &1650212320
 GameObject:
   m_ObjectHideFlags: 0
