@@ -222,6 +222,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45.24, y: 250.07, z: 15.702}
+--- !u!198 &1461302293 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5493147558789976720, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+  m_PrefabInstance: {fileID: 8611542953138353294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650212320
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +499,110 @@ PrefabInstance:
     - target: {fileID: 1555015116827371125, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: lasers
+      value: 
+      objectReference: {fileID: 1461302293}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_Flags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_Interactions
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Id
+      value: ef1efc72-41ef-49b0-a370-d0e693d7ab9e
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Id
+      value: f2fe79b0-2ee0-4577-ad3a-e8c905e81d27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 2e971778-3d28-4134-b9ca-83230ca90bd2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[3].m_Id
+      value: ef1efc72-41ef-49b0-a370-d0e693d7ab9e
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Name
+      value: negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[2].m_Name
+      value: positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Processors
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024651941645038797, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Interactions
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5493147558789976720, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8032495693334270243, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
       propertyPath: m_LocalPosition.x

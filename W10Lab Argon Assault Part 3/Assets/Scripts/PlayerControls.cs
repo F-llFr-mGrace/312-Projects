@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float posYawFactor;
     [SerializeField] float ctrlRollFactor;
 
+    [SerializeField] InputAction shoot;
+    [SerializeField] ParticleSystem lasers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,18 +33,38 @@ public class PlayerControls : MonoBehaviour
     private void OnEnable()
     {
         movement.Enable();
+        shoot.Enable();
     }
 
     private void OnDisable()
     {
         movement.Disable();
+        shoot.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveShip();
+        RotateShip();
 
+        Debug.Log(shoot.ReadValue<float>());
+
+        if (shoot.ReadValue<float>() > .5)
+        {
+            if (!lasers.isEmitting)
+            {
+                lasers.Play();
+            }
+        }
+        else
+        {
+            lasers.Stop();
+        }
+    }
+
+    private void RotateShip()
+    {
         float pitch = transform.localPosition.y * -posPitchFactor + throwY * -ctrlPitchFactor;
         float yaw = transform.localPosition.x * posYawFactor;
         float roll = throwX * -ctrlRollFactor;
@@ -58,7 +82,7 @@ public class PlayerControls : MonoBehaviour
         float verticalThrow = Input.GetAxis("Vertical");
         */
 
-        Debug.Log(throwX + ", " + throwY);
+        //Debug.Log(throwX + ", " + throwY);
 
         transform.localPosition = new Vector3
             (
