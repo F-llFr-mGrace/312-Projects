@@ -21,6 +21,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float posYawFactor;
     [SerializeField] float ctrlRollFactor;
 
+    [SerializeField] ParticleSystem[] allLasers;
     [SerializeField] InputAction shoot;
     [SerializeField] ParticleSystem lasers;
 
@@ -52,14 +53,20 @@ public class PlayerControls : MonoBehaviour
 
         if (shoot.ReadValue<float>() > .5)
         {
-            if (!lasers.isEmitting)
+            if (!allLasers[0].isEmitting)
             {
-                lasers.Play();
+                foreach (var lasers in allLasers)
+                {
+                    lasers.Play();
+                }
             }
         }
         else
         {
-            lasers.Stop();
+            foreach (var lasers in allLasers)
+            {
+                lasers.Stop();
+            }
         }
     }
 
