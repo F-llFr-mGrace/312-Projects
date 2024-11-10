@@ -6,21 +6,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
+    [Header("Scrolling speed control")]
     [SerializeField] InputAction movement;
     [SerializeField] float speed;
 
     float throwX;
     float throwY;
 
+    [Header("Ship traversal clamp")]
     [SerializeField] float clampX;
     [SerializeField] float clampY;
 
+    [Header("Ship leading factor")]
     [SerializeField] float posPitchFactor;
     [SerializeField] float ctrlPitchFactor;
 
     [SerializeField] float posYawFactor;
     [SerializeField] float ctrlRollFactor;
 
+    [Header("Lasers firing setup")]
     [SerializeField] ParticleSystem[] allLasers;
     [SerializeField] InputAction shoot;
     [SerializeField] ParticleSystem lasers;
