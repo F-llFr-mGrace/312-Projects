@@ -29,6 +29,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] InputAction shoot;
     [SerializeField] ParticleSystem lasers;
 
+    [Header("Collision")]
+    [SerializeField] BoxCollider thisCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +56,7 @@ public class PlayerControls : MonoBehaviour
         MoveShip();
         RotateShip();
 
-        Debug.Log(shoot.ReadValue<float>());
+        //Debug.Log(shoot.ReadValue<float>());
 
         if (shoot.ReadValue<float>() > .5)
         {
