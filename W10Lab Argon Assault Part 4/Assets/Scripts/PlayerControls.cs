@@ -6,23 +6,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
+    [Header("Scrolling speed control")]
     [SerializeField] InputAction movement;
     [SerializeField] float speed;
 
     float throwX;
     float throwY;
 
+    [Header("Ship traversal clamp")]
     [SerializeField] float clampX;
     [SerializeField] float clampY;
 
+    [Header("Ship leading factor")]
     [SerializeField] float posPitchFactor;
     [SerializeField] float ctrlPitchFactor;
 
     [SerializeField] float posYawFactor;
     [SerializeField] float ctrlRollFactor;
 
+    [Header("Lasers firing setup")]
+    [SerializeField] ParticleSystem[] allLasers;
     [SerializeField] InputAction shoot;
     [SerializeField] ParticleSystem lasers;
+
+    [Header("Collision")]
+    [SerializeField] BoxCollider thisCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -48,18 +56,24 @@ public class PlayerControls : MonoBehaviour
         MoveShip();
         RotateShip();
 
-        Debug.Log(shoot.ReadValue<float>());
+        //Debug.Log(shoot.ReadValue<float>());
 
         if (shoot.ReadValue<float>() > .5)
         {
-            if (!lasers.isEmitting)
+            if (!allLasers[0].isEmitting)
             {
-                lasers.Play();
+                foreach (var lasers in allLasers)
+                {
+                    lasers.Play();
+                }
             }
         }
         else
         {
-            lasers.Stop();
+            foreach (var lasers in allLasers)
+            {
+                lasers.Stop();
+            }
         }
     }
 
