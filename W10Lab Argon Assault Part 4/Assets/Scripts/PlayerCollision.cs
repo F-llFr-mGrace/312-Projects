@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] MonoBehaviour playerControls;
+    [SerializeField] ParticleSystem explosionVFX;
+    [SerializeField] MeshRenderer ShipVisible;
+    [SerializeField] BoxCollider ShipCollision;
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"{name} **Triggered by** {other.gameObject.name}");
         playerControls.enabled = false;
+        explosionVFX.Play();
+        ShipVisible.enabled = false;
+        ShipCollision.enabled = false;
         Invoke("ReLoadLevel", 1f);
     }
 
