@@ -6,7 +6,8 @@ public class EnemyCollision : MonoBehaviour
 {
     [SerializeField] GameObject explosionVFX;
     [SerializeField] Transform parent;
-    [SerializeField] int scorePerHit = 15;
+    int scorePerHit = 15;
+    int hitCount = 0;
 
     Scoreboard scoreboard;
 
@@ -17,10 +18,16 @@ public class EnemyCollision : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        hitCount += 1;
         scoreboard.IncreaseScore(scorePerHit);
-        Debug.Log($"Ouch I, {gameObject.name}, am slain by {other.name}!");
         GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parent;
-        Destroy(gameObject);
+        Debug.Log($"Ouch I, {gameObject.name}, am --HIT-- by {other.name}!");
+
+        if (hitCount >= 3)
+        {
+            Debug.Log($"Ouch I, {gameObject.name}, am --SLAIN-- by {other.name}!");
+            Destroy(gameObject);
+        }
     }
 }

@@ -6,6 +6,6 @@ public class ParticleCleanup : MonoBehaviour
 {
     void Update()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 3f);
     }
 }
