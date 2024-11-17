@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyCollision : MonoBehaviour
 {
     [SerializeField] GameObject explosionVFX;
-    [SerializeField] Transform parent;
+    GameObject parentObj;
     int scorePerHit = 15;
     int hitCount = 0;
 
@@ -13,6 +13,7 @@ public class EnemyCollision : MonoBehaviour
 
     private void Start()
     {
+        parentObj = GameObject.FindWithTag("ParticleDump");
         scoreboard = FindObjectOfType<Scoreboard>();
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
@@ -23,7 +24,7 @@ public class EnemyCollision : MonoBehaviour
         hitCount += 1;
         scoreboard.IncreaseScore(scorePerHit);
         GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
-        vfx.transform.parent = parent;
+        vfx.transform.parent = parentObj.transform;
         Debug.Log($"Ouch I, {gameObject.name}, am --HIT-- by {other.name}!");
 
         if (hitCount >= 3)
