@@ -350,7 +350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionVFX: {fileID: 3200836327345539238, guid: 481c924a605342644940aa0d069b3158, type: 3}
   parent: {fileID: 139931013}
-  scorePerHit: 15
 --- !u!95 &265023207 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6673892738764735486, guid: 9aebd54c0e71cdc43848e668fe1cb236, type: 3}
@@ -504,6 +503,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textScore: {fileID: 315251808}
+--- !u!1001 &317522616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 368215467136427490, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 139931013}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 581.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.04079
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 825.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.33073092
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.94372517
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -141.374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364878250745394157, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372414496896689126, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
+      propertyPath: m_Name
+      value: StarSparrow9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e8bc97b040aedb43a651e32710fe872, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionVFX: {fileID: 3200836327345539238, guid: 481c924a605342644940aa0d069b3158, type: 3}
   parent: {fileID: 139931013}
-  scorePerHit: 15
 --- !u!1 &1525479122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,3 +1213,4 @@ SceneRoots:
   - {fileID: 3083869759510537153}
   - {fileID: 45821342}
   - {fileID: 1525479125}
+  - {fileID: 317522616}
