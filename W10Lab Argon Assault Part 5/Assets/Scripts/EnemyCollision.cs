@@ -22,13 +22,13 @@ public class EnemyCollision : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         hitCount += 1;
-        scoreboard.IncreaseScore(scorePerHit);
         GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parentObj.transform;
         Debug.Log($"Ouch I, {gameObject.name}, am --HIT-- by {other.name}!");
 
         if (hitCount >= 3)
         {
+            scoreboard.IncreaseScore(scorePerHit);
             Debug.Log($"Ouch I, {gameObject.name}, am --SLAIN-- by {other.name}!");
             Destroy(gameObject);
         }
