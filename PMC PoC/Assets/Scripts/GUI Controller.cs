@@ -25,9 +25,55 @@ public class GUIController : MonoBehaviour
     [SerializeField] GameObject[] CenteredView;
     [SerializeField] GameObject[] SelectedTown;
 
+    [Header("Player Resources")]
+    public int money;
+    [SerializeField] TextMeshProUGUI moneyTxt;
+    [SerializeField] TextMeshProUGUI blueforAssetListText;
+    [SerializeField] TextMeshProUGUI redforAssetListText;
+
     void Start()
     {
         CenterCam(); 
+    }
+
+    public void UpdatePlayerMoneyAndAssetCount()
+    {
+        moneyTxt.text = $"Your funds: ${money}";
+        if (PoiScript != null)
+        {
+            UpdateAssetCount(PoiScript.BluforAsset, blueforAssetListText);
+            UpdateAssetCount(PoiScript.RedforAsset, redforAssetListText);
+        }
+    }
+
+    private void UpdateAssetCount(float[] TeamAssetList, TextMeshProUGUI textToUpdate)
+    {
+        int index = 0;
+        foreach (float i in TeamAssetList)
+        {
+            if (index == 0)
+            {
+                textToUpdate.text = $"Inf -> {TeamAssetList[index]}\n";
+            }
+            else if (index == 1)
+            {
+                textToUpdate.text += $"Mech Inf -> {TeamAssetList[index]}\n";
+            }
+            else if (index == 2)
+            {
+                textToUpdate.text += $"Tank -> {TeamAssetList[index]} \n";
+            }
+            else if (index == 3)
+            {
+                textToUpdate.text += $"Heli -> {TeamAssetList[index]}";
+            }
+            else
+            {
+                Debug.Log("Unrecognised asset type!");
+            }
+
+            index++;
+        }
     }
 
     public void CenterCam()
@@ -40,7 +86,6 @@ public class GUIController : MonoBehaviour
         selectedPOI = camCenter;
 
         PoiScript = null;
-        Debug.Log($"PoiScript is --{PoiScript}--");
     }
 
     public void TownClicked(GameObject cityToClick)
@@ -54,7 +99,7 @@ public class GUIController : MonoBehaviour
         selectedPOI = cityToClick;
 
         PoiScript = cityToClick.GetComponent<PoiBehavior>();
-        Debug.Log($"PoiScript is --{PoiScript}--");
+        UpdatePlayerMoneyAndAssetCount(); //Has to go past new POI Script
     }
 
     private void UiElementsPreset(GameObject[] preset)
