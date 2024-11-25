@@ -24,12 +24,16 @@ public class GUIController : MonoBehaviour
     [SerializeField] GameObject[] AlwaysInclude;
     [SerializeField] GameObject[] CenteredView;
     [SerializeField] GameObject[] SelectedTown;
+    [SerializeField] GameObject[] MoveUnitsHere;
+    [SerializeField] GameObject[] BuyUnitsHere;
 
     [Header("Player Resources")]
     public int money;
     [SerializeField] TextMeshProUGUI moneyTxt;
     [SerializeField] TextMeshProUGUI blueforAssetListText;
     [SerializeField] TextMeshProUGUI redforAssetListText;
+
+    [SerializeField] TextMeshProUGUI buyOrMoveText;
 
     void Start()
     {
@@ -91,6 +95,10 @@ public class GUIController : MonoBehaviour
     public void TownClicked(GameObject cityToClick)
     {
         UiElementsPreset(SelectedTown);
+        if (!cityToClick.CompareTag("FOB"))
+        {
+            SelectedTown[2].SetActive(false);
+        }
 
         camera.m_Lens.FieldOfView = 20;
         textPOI.text = cityToClick.name;
@@ -100,6 +108,28 @@ public class GUIController : MonoBehaviour
 
         PoiScript = cityToClick.GetComponent<PoiBehavior>();
         UpdatePlayerMoneyAndAssetCount(); //Has to go past new POI Script
+    }
+
+    public void moveUnitsHere()
+    {
+        UiElementsPreset(MoveUnitsHere);
+        buyOrMoveText.text = "Move";
+    }
+
+    public void buyUnitsHere()
+    {
+        UiElementsPreset(BuyUnitsHere);
+        buyOrMoveText.text = "Buy";
+    }
+
+    public void buyMove()
+    {
+        
+    }
+
+    public void BackButton()
+    {
+        TownClicked(selectedPOI);
     }
 
     private void UiElementsPreset(GameObject[] preset)
