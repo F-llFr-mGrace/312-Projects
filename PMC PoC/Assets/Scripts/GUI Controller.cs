@@ -2,9 +2,11 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GUIController : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GUIController : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera camera;
 
     [Header("What is selected")]
+    [SerializeField] GameObject[] allPOI;
     GameObject selectedPOI;
     PoiBehavior PoiScript;
 
@@ -35,9 +38,16 @@ public class GUIController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI buyOrMoveText;
 
+    [SerializeField] TMP_Dropdown TownsToPickFrom;
+    [SerializeField] TMP_Dropdown AssetsToPickFrom;
+
+    bool moveIfTrue = true;
+
+    List<GameObject> tmpPOI = new List<GameObject>();
+
     void Start()
     {
-        CenterCam(); 
+        CenterCam();
     }
 
     public void UpdatePlayerMoneyAndAssetCount()
@@ -114,17 +124,119 @@ public class GUIController : MonoBehaviour
     {
         UiElementsPreset(MoveUnitsHere);
         buyOrMoveText.text = "Move";
+        moveIfTrue = true;
+
+
+        TownsToPickFrom.ClearOptions();
+        tmpPOI.Clear();
+        foreach (GameObject POI in allPOI)
+        {
+            if (POI == selectedPOI) { continue; }
+            TownsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"{POI.name} - {Mathf.Round(Vector3.Distance(selectedPOI.transform.position, POI.transform.position))} km"));
+            tmpPOI.Add(POI);
+        }
+
+        AssetsToPickFrom.ClearOptions();
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Inf"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Mech Inf"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Tank"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Heli"));
     }
 
     public void buyUnitsHere()
     {
         UiElementsPreset(BuyUnitsHere);
         buyOrMoveText.text = "Buy";
+        moveIfTrue = false;
+
+        AssetsToPickFrom.ClearOptions();
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Inf"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Mech Inf"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Tank"));
+        AssetsToPickFrom.options.Add(new TMP_Dropdown.OptionData($"Heli"));
     }
 
     public void buyMove()
     {
-        
+        if (moveIfTrue)
+        {
+            var targetPOIScript = tmpPOI[TownsToPickFrom.value].GetComponent<PoiBehavior>();
+            var selectedPOIScript = selectedPOI.GetComponent<PoiBehavior>();
+            
+            if (AssetsToPickFrom.value == 0)
+            {
+                MoveAssets(targetPOIScript, selectedPOIScript, 0);
+            }
+            else if (AssetsToPickFrom.value == 1)
+            {
+                MoveAssets(targetPOIScript, selectedPOIScript, 1);
+            }
+            else if (AssetsToPickFrom.value == 2)
+            {
+                MoveAssets(targetPOIScript, selectedPOIScript, 2);
+            }
+            else if (AssetsToPickFrom.value == 3)
+            {
+                MoveAssets(targetPOIScript, selectedPOIScript, 3);
+            }
+            else
+            {
+                Debug.Log("No assets moved");
+            }
+        }
+        else
+        {
+            if (AssetsToPickFrom.value == 0)
+            {
+                if (money >= 2)
+                {
+                    PoiScript.BluforAsset[0] += 1;
+                    money -= 2;
+                }
+            }
+            else if (AssetsToPickFrom.value == 1)
+            {
+                if (money >= 3)
+                {
+                    PoiScript.BluforAsset[1] += 1;
+                    money -= 3;
+                }
+            }
+            else if (AssetsToPickFrom.value == 2)
+            {
+                if (money >= 4)
+                {
+                    PoiScript.BluforAsset[2] += 1;
+                    money -= 4;
+                }
+            }
+            else if (AssetsToPickFrom.value == 3)
+            {
+                if (money >= 5)
+                {
+                    PoiScript.BluforAsset[3] += 1;
+                    money -= 5;
+                }
+            }
+            else
+            {
+                Debug.Log("No assets moved");
+            }
+        }
+        UpdatePlayerMoneyAndAssetCount();
+    }
+
+    private void MoveAssets(PoiBehavior targetPOIScript, PoiBehavior selectedPOIScript, int assetType)
+    {
+        if (targetPOIScript.BluforAsset[assetType] > 0)
+        {
+            targetPOIScript.BluforAsset[assetType] -= 1;
+            selectedPOIScript.BluforAsset[assetType] += 1;
+        }
+        else
+        {
+            Debug.Log("Not enough assets to move!");
+        }
     }
 
     public void BackButton()
