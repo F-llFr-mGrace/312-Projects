@@ -1,15 +1,14 @@
 using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class GUIController : MonoBehaviour
 {
+    public delegate void DelWeAreWinning();
+
+    public event DelWeAreWinning WeAreWinningSignal;
+
     [Header("Center of world default camera view")]
     [SerializeField] GameObject camCenter;
     [Header("Text displaying name of selected Town/Area")]
@@ -58,6 +57,7 @@ public class GUIController : MonoBehaviour
             UpdateAssetCount(PoiScript.BluforAsset, blueforAssetListText);
             UpdateAssetCount(PoiScript.RedforAsset, redforAssetListText);
         }
+        checkForWin();
     }
 
     private void UpdateAssetCount(float[] TeamAssetList, TextMeshProUGUI textToUpdate)
@@ -260,5 +260,21 @@ public class GUIController : MonoBehaviour
         {
             gObj.SetActive(true);
         }
+    }
+
+    void checkForWin()
+    {
+        foreach (GameObject POI in allPOI)
+        {
+            var script = POI.GetComponent<PoiBehavior>();
+            foreach (float asset in script.RedforAsset)
+            {
+                if (asset > 0)
+                {
+                    return;
+                }
+            }
+        }
+        WeAreWinningSignal?.Invoke();
     }
 }

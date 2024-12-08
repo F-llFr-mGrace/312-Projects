@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Spite.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Spite 1.unity
+    guid: fa2d5f2386eda5f43a2244ab68d71549
+  - enabled: 1
+    path: Assets/Scenes/Spite 2.unity
+    guid: ee48c69aaff1c0a4595a866c5337718c
   m_configObjects: {}
